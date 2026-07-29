@@ -8,7 +8,7 @@ export async function actionForm(formData:FormData) {
   const post = await prisma.posts.create({
     data:{title}
   })
-  console.log(post)
+    revalidatePath("/")
 }
 export async function actionDelete(formData:FormData) {
   const id = formData.get("id") as string;
@@ -18,7 +18,6 @@ export async function actionDelete(formData:FormData) {
     where: { id }
   })
   revalidatePath("/")
-  console.log(deletePost)
 }
 export async function editForm(formData:FormData) {
   const id = formData.get("id") as string;
@@ -30,5 +29,4 @@ export async function editForm(formData:FormData) {
     data:{ title }
   })
   revalidatePath("/")
-  console.log(post)
 }
