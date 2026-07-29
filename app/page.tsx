@@ -5,7 +5,11 @@ import prisma from "@/lib/prisma";
 
 
 export default async function Home() {
-  const posts = await prisma.posts.findMany();
+  const posts = await prisma.posts.findMany({
+    orderBy:{
+      createdAt: "desc"
+    }
+  });
   return (
     <div>
       <form action={actionForm} className="border grid grid-cols-5 bg-orange-500 text-white rounded-md px-2 text-lg">
